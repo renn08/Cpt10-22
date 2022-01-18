@@ -521,8 +521,8 @@ Below we will demonstrate the utilization of the `Keras` package for deep neural
 
 ```{r eval=TRUE, warning=F, message=FALSE}
 # devtools::install_github("rstudio/keras")
-library("keras")
-# install_keras()
+library(keras)
+#install_keras()
 
 #install.packages("tensorflow")
 library(tensorflow)
@@ -841,8 +841,7 @@ plot_ly(hist_df, x = ~time)  %>%
   add_trace(y = ~acc, name = 'training accuracy', mode = 'lines+markers') %>%
   add_trace(y = ~valid_loss, name = 'validation loss',mode = 'lines+markers') %>%
   add_trace(y = ~valid_acc, name = 'validation accuracy', mode = 'lines+markers') %>% 
-  layout(title="Titanic NN Model Performance",
-           legend = list(orientation = 'h'), yaxis=list(title="metric"))
+  layout(title="Titanic NN Model Performance", legend = list(orientation = 'h'), yaxis=list(title="metric"))
 ```
 
 ## Passenger Survival Forecasting using New Data
