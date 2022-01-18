@@ -1102,11 +1102,16 @@ model.new <- load_model_hdf5("model.4.h5")
 save_model_weights_hdf5("model_weights.h5")
 model.old %>% load_model_weights_hdf5("model_weights.h5")
 
+# modified to:? by zeyiren
+# save_model_hdf5(model.3, "model_weights.h5")
+# model.old <- load_model_hdf5("model_weights.h5")
+
 json_string <- model_to_json(model.old)
 model.new <- model_from_json(json_string)
 
 yaml_string <- model_to_yaml(model.old)
 model.new <- model_from_yaml(yaml_string)
+# ERROR: cannot import pyyaml package
 ```
 
 Let's demonstrate loading several pre-trained models, [(resnet50)](https://keras.io/api/applications/resnet/), [VGG16](https://keras.io/api/applications/vgg/), [VGG19](https://keras.io/api/applications/vgg/), and using them for simple out-of-the-box image classification and automated labeling of an [image of New Zealand's Lake Mapourika](https://upload.wikimedia.org/wikipedia/commons/2/23/Lake_mapourika_NZ.jpeg).
@@ -1120,8 +1125,9 @@ reticulate::py_config()
 # tensorflow::install_tensorflow(extra_packages='pillow')
 
 # load the image
-download.file("https://upload.wikimedia.org/wikipedia/commons/2/23/Lake_mapourika_NZ.jpeg", paste(getwd(),"results/image.png", sep="/"), mode = 'wb')
-img <- image_load(paste(getwd(),"results/image.png", sep="/"), target_size = c(224,224))
+download.file("https://upload.wikimedia.org/wikipedia/commons/2/23/Lake_mapourika_NZ.jpeg", paste(getwd(),"image.png", sep="/"), mode = 'wb')
+img <- image_load(paste(getwd(),"image.png", sep="/"), target_size = c(224,224))
+# modify the path here, might modified to add a path if doesn't exists
 
 # Preprocess input image
 x <- image_to_array(img)
