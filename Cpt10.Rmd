@@ -296,7 +296,8 @@ Although the graph looks more complicated than the previous neural network, we h
 google_pred2<-compute(google_model2, google_test[, c(1:2, 4:8)])
 pred_results2<-google_pred2$net.result
 cor(pred_results2, google_test$RealEstate)
-
+```
+```{r echo=T, message=F, error=F, warning=F}
 plot_ly() %>%
   add_markers(x=pred_results2, y=google_test$RealEstate, 
               name="Data Scatter", type="scatter", mode="markers") %>%
@@ -322,7 +323,8 @@ google_pred2<-compute(google_model2, google_test[, c(1:2, 4:8)])
 pred_results2<-google_pred2$net.result
 cor(pred_results2, google_test$RealEstate)
 # plot(google_model2)
-
+```
+```{r message=F, error=F, warning=F}
 plot_ly() %>%
   add_markers(x=pred_results2, y=google_test$RealEstate, 
               name="Data Scatter", type="scatter", mode="markers") %>%
@@ -344,11 +346,13 @@ We will demonstrates the foundation of the neural network prediction to estimate
 ```{r eval=T, warning=F, message=F, error=F}
 # generate random training data: 1,000 |X_i|, where X_i ~ Uniform (0,100) or perhaps ~ N(0,1)
 rand_data <- abs(runif(1000, 0, 100))
- 
+```
+```{r message=F, error=F, warning=F}
 # create a 2 column data-frame (and_data, sqrt_data)
 sqrt_df <- data.frame(rand_data, sqrt_data=sqrt(rand_data)) 
 # plot(rand_data, sqrt_df$sqrt_data)
-
+```
+```{r message=F, error=F, warning=F}
 s <- seq(from=0, to=100, length.out=1000)
 plot_ly(x = ~s, y = ~sqrt(s), type="scatter", mode = "lines") %>%
   layout(title='Square-root Funciton',
@@ -395,7 +399,8 @@ plot_ly(x = ~pred_sqrt[,1], y = ~test_data_sqrt, type = "scatter", mode="markers
            xaxis = list(title="NN Predicted", scaleanchor="y"),
            yaxis = list(title="Actual Value (y=sqrt(x))", scaleanchor="x"),
            legend = list(orientation = 'h'))
-
+```
+```{r message=F, error=F, warning=F}
 compare_df <-data.frame(pred_sqrt, test_data_sqrt); # compare_df
  
 # plot(test_data, test_data_sqrt)
